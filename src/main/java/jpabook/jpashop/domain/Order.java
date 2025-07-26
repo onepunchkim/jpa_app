@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Table(name = "orders")
 @Getter
@@ -19,14 +22,14 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY) //FetchType default 값이 EAGER 이므로 바꿔줘야 함 
+    @ManyToOne(fetch = LAZY) //FetchType default 값이 EAGER 이므로 바꿔줘야 함
     @JoinColumn(name = "member_id")
     private Member member; //주문 회원
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = ALL, fetch = LAZY)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery; //배송 정보
 
