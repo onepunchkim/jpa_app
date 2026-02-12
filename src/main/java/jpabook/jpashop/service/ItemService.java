@@ -23,7 +23,7 @@ public class ItemService {
     /*
     * 영속성 컨텍스트 자동 변경
     * */
-    @Transactional
+    @Transactional //트랜잭션이 끝나면 flush가 된다.
     public void updateItem(Long id, String name, int price, int stockQuantity) {
         Item item = itemRepository.findOne(id);
         item.setName(name);
