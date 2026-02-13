@@ -12,10 +12,16 @@ spring:
       hibernate:
 #        show_sql: true
         format_sql: true
+        highlight_sql: true
 
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
+
+# 콘솔 색상
+  output:
+    ansi:
+      enabled: always
 
 logging.level:
   org.hibernate.SQL: debug
